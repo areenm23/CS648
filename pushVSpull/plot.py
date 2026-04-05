@@ -20,9 +20,6 @@ def fit_and_plot(x, y, label):
     print(f"{label}: y = {a:.4f} * log(n) + {b:.4f}")
     return x_fit, y_fit
 
-# ----------------------------
-# Plot n vs X
-# ----------------------------
 plt.figure()
 for algo in algos:
     subset = df[df['algo'] == algo].sort_values('n')
@@ -42,9 +39,6 @@ plt.legend()
 plt.grid()
 plt.show()
 
-# ----------------------------
-# Plot n vs Y
-# ----------------------------
 plt.figure()
 for algo in algos:
     subset = df[df['algo'] == algo].sort_values('n')
@@ -64,9 +58,6 @@ plt.legend()
 plt.grid()
 plt.show()
 
-# ----------------------------
-# Plot n vs C
-# ----------------------------
 plt.figure()
 for algo in algos:
     subset = df[df['algo'] == algo].sort_values('n')
