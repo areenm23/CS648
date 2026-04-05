@@ -2,18 +2,16 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Load the CSV file
-df = pd.read_csv("rumor_push_pull_clean.csv")
 
-# Get unique algorithms
+df = pd.read_csv("rumor_push_pull_clean.csv")
 algos = ['push', 'pull']
 
 def fit_and_plot(x, y, label):
     logx = np.log(x)
-    coeffs = np.polyfit(logx, y, 1)  # y = a*log(n) + b
+    coeffs = np.polyfit(logx, y, 1)  
     a, b = coeffs
 
-    # Generate smooth line
+
     x_fit = np.linspace(min(x), max(x), 200)
     y_fit = a * np.log(x_fit) + b
 
