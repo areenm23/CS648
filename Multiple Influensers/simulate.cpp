@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// ----------------------------
-// xoshiro256++ RNG
-// ----------------------------
 struct xoshiro256pp {
     uint64_t s[4];
 
@@ -62,9 +59,6 @@ vector<double> generate_power_law_weights(int n, double beta, xoshiro256pp &rng)
     return weights;
 }
 
-// ----------------------------
-// Chung-Lu graph
-// ----------------------------
 vector<vector<int>> generate_chung_lu_graph(int n, double beta, xoshiro256pp &rng) {
     auto weights = generate_power_law_weights(n, beta, rng);
     double W = accumulate(weights.begin(), weights.end(), 0.0);
@@ -84,9 +78,6 @@ vector<vector<int>> generate_chung_lu_graph(int n, double beta, xoshiro256pp &rn
     return G;
 }
 
-// ----------------------------
-// Giant component (BFS)
-// ----------------------------
 vector<int> get_giant_component(const vector<vector<int>> &G) {
     int n = G.size();
     vector<bool> visited(n, false);
@@ -118,9 +109,7 @@ vector<int> get_giant_component(const vector<vector<int>> &G) {
     return largest;
 }
 
-// ----------------------------
-// Rumor spreading (Push-Pull with m sources)
-// ----------------------------
+
 int rumor_spread_push_pull(const vector<vector<int>> &G, int m, xoshiro256pp &rng) {
     vector<int> giant = get_giant_component(G);
     int n = giant.size();
@@ -165,9 +154,7 @@ int rumor_spread_push_pull(const vector<vector<int>> &G, int m, xoshiro256pp &rn
     return rounds;
 }
 
-// ----------------------------
-// Experiment
-// ----------------------------
+
 vector<int> experiment(int n, double beta, int m, int trials, xoshiro256pp &rng) {
     vector<int> results;
 
@@ -180,9 +167,6 @@ vector<int> experiment(int n, double beta, int m, int trials, xoshiro256pp &rng)
     return results;
 }
 
-// ----------------------------
-// Main
-// ----------------------------
 int main() {
     int n = 10000;
     double beta = 2.5;
@@ -193,7 +177,7 @@ int main() {
     uint64_t seed = chrono::high_resolution_clock::now().time_since_epoch().count();
     auto rng = init_rng(seed);
 
-    ofstream file("planted_influence_results.csv");
+    ofstream file("output.csv");
     file << "m,average_rounds\n";
 
     for (int m : m_values) {

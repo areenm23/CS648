@@ -182,7 +182,7 @@ int main() {
     uint64_t seed = chrono::high_resolution_clock::now().time_since_epoch().count();
     auto rng = init_rng(seed);
 
-    ofstream file("rumor_spread_results2.csv");
+    ofstream file("output.csv");
     file << "n,average_rounds,log_log_n,ratio\n";
 
     int i = 547252*1.3;
