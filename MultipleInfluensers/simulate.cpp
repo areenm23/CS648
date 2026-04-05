@@ -29,9 +29,6 @@ struct xoshiro256pp {
     }
 };
 
-// ----------------------------
-// SplitMix64 (seeding)
-// ----------------------------
 uint64_t splitmix64(uint64_t &x) {
     uint64_t z = (x += 0x9e3779b97f4a7c15);
     z = (z ^ (z >> 30)) * 0xbf58476d1ce4e5b9;
@@ -47,9 +44,6 @@ xoshiro256pp init_rng(uint64_t seed) {
     return rng;
 }
 
-// ----------------------------
-// Power-law weights
-// ----------------------------
 vector<double> generate_power_law_weights(int n, double beta, xoshiro256pp &rng) {
     vector<double> weights(n);
     for (int i = 0; i < n; i++) {

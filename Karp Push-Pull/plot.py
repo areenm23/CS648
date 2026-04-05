@@ -8,12 +8,12 @@ df = pd.read_csv(file)
 
 # ---------- Aggregate ----------
 agg = df.groupby("n").agg(
-    avg_rounds=("rounds", "mean"),
-    std_rounds=("rounds", "std"),
-    min_rounds=("rounds", "min"),
-    max_rounds=("rounds", "max"),
-    avg_calls=("calls", "mean"),
-    std_calls=("calls", "std"),
+    avg_rounds=("avg_rounds", "mean"),
+    std_rounds=("avg_rounds", "std"),
+    min_rounds=("avg_rounds", "min"),
+    max_rounds=("avg_rounds", "max"),
+    avg_calls=("avg_calls", "mean"),
+    std_calls=("avg_calls", "std"),
 ).reset_index()
 
 # Add theoretical transforms

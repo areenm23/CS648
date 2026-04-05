@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 
 # Load data
-df = pd.read_csv("planted_influence_results.csv")
+df = pd.read_csv("output.csv")
 
 x = df["m"].values.reshape(-1, 1)
 y = df["average_rounds"].values

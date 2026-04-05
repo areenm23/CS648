@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-file = "rumor_spread_results.csv"
+file = "output.csv"
 
 output_dir = "plots"
 os.makedirs(output_dir, exist_ok=True)

@@ -140,7 +140,7 @@ int main(){
     informed.reserve(max_n);
     new_nodes.reserve(max_n/4);
 
-    ofstream out("results_exact.csv");
+    ofstream out("output.csv");
 
     out<<"n,f,runs,mean_rounds,std_rounds,ratio_log2n,ratio_theory\n";
 
