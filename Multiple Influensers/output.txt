@@ -1,0 +1,38 @@
+areenm@csews45:~/cs648/inf$ ./mi.out
+n=100000
+Running for m = 1
+Average rounds: 13.6
+
+Running for m = 2
+Average rounds: 11
+
+Running for m = 4
+Average rounds: 10.6
+
+Running for m = 8
+Average rounds: 9.9
+
+Running for m = 16
+Average rounds: 9.7
+
+Results saved to planted_influence_results.csv
+
+areenm@csews45:~/cs648/inf$ ./mi2.out
+n=10000
+Running for m = 1
+Average rounds: 10.8
+
+Running for m = 2
+Average rounds: 10.5
+
+Running for m = 4
+Average rounds: 10.2
+
+Running for m = 8
+Average rounds: 8.9
+
+Running for m = 16
+Average rounds: 8.6
+
+Results saved to planted_influence_results.csv
+areenm@csews45:~/cs648/inf$
