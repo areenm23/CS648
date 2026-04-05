@@ -22,7 +22,7 @@ plt.figure(figsize=(8,6))
 logN = np.log(N)
 for k in k_values:
     y = np.array(data[k])
-    # best-fit y = a log(N) + b
+    
     a, b = np.polyfit(logN, y, 1)
     print(f"k={k}: T(N) ≈ {a:.4f} log(N) + {b:.4f}")
     fit = a*logN + b

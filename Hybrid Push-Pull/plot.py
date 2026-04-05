@@ -2,15 +2,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 
-# =========================
-# Load data
-# =========================
 push_df = pd.read_csv("push_results.csv")
 pull_df = pd.read_csv("pull_results.csv")
 
-# =========================
-# Compute percentages
-# =========================
 def compute_percentage(df):
     df = df.copy()
     total = df["useful_calls"] + df["wasted_calls"]
@@ -21,23 +15,14 @@ def compute_percentage(df):
 push_df = compute_percentage(push_df)
 pull_df = compute_percentage(pull_df)
 
-# =========================
-# Aggregate
-# =========================
 push_group = push_df.groupby("day").mean().reset_index()
 pull_group = pull_df.groupby("day").mean().reset_index()
 
-# =========================
-# Normalize X-axis
-# =========================
 max_day = max(push_group["day"].max(), pull_group["day"].max())
 
 push_group["x"] = push_group["day"] / max_day
 pull_group["x"] = pull_group["day"] / max_day
 
-# =========================
-# Interpolation
-# =========================
 x_dense = np.linspace(0, 1, 1000)
 
 push_useful = np.interp(x_dense, push_group["x"], push_group["useful_pct"])
@@ -55,7 +40,6 @@ def find_intersection(x, y1, y2):
 
     i = idx[0]
 
-    # linear interpolation (more precise)
     x1, x2 = x[i], x[i+1]
     y1_1, y1_2 = y1[i], y1[i+1]
     y2_1, y2_2 = y2[i], y2[i+1]

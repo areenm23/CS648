@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// ----------------------------
-// xoshiro256++ RNG
-// ----------------------------
 struct xoshiro256pp {
     uint64_t s[4];
 
@@ -33,7 +30,6 @@ struct xoshiro256pp {
     }
 };
 
-// SplitMix64 for seeding
 uint64_t splitmix64(uint64_t &x) {
     uint64_t z = (x += 0x9e3779b97f4a7c15);
     z = (z ^ (z >> 30)) * 0xbf58476d1ce4e5b9;
@@ -49,9 +45,6 @@ xoshiro256pp init_rng(uint64_t seed) {
     return rng;
 }
 
-// ----------------------------
-// Generate Power-Law Weights
-// ----------------------------
 vector<double> generate_power_law_weights(int n, double beta, xoshiro256pp &rng) {
     vector<double> weights(n);
     for (int i = 0; i < n; i++) {
@@ -61,9 +54,6 @@ vector<double> generate_power_law_weights(int n, double beta, xoshiro256pp &rng)
     return weights;
 }
 
-// ----------------------------
-// Generate Chung-Lu Graph
-// ----------------------------
 vector<vector<int>> generate_chung_lu_graph(int n, double beta, xoshiro256pp &rng) {
     auto weights = generate_power_law_weights(n, beta, rng);
     double W = accumulate(weights.begin(), weights.end(), 0.0);
@@ -83,9 +73,6 @@ vector<vector<int>> generate_chung_lu_graph(int n, double beta, xoshiro256pp &rn
     return G;
 }
 
-// ----------------------------
-// Get Giant Component (BFS)
-// ----------------------------
 vector<int> get_giant_component(const vector<vector<int>> &G) {
     int n = G.size();
     vector<bool> visited(n, false);
@@ -117,9 +104,6 @@ vector<int> get_giant_component(const vector<vector<int>> &G) {
     return largest;
 }
 
-// ----------------------------
-// Rumor Spreading (Push-Pull)
-// ----------------------------
 int rumor_spread_push_pull(const vector<vector<int>> &G, xoshiro256pp &rng) {
     vector<int> giant = get_giant_component(G);
     int n = giant.size();
@@ -134,7 +118,6 @@ int rumor_spread_push_pull(const vector<vector<int>> &G, xoshiro256pp &rng) {
     while ((int)informed.size() < 0.9 * n) {
         unordered_set<int> new_informed = informed;
 
-        // PUSH
         for (int u : informed) {
             if (!G[u].empty()) {
                 int v = G[u][rng.next() % G[u].size()];
@@ -142,7 +125,6 @@ int rumor_spread_push_pull(const vector<vector<int>> &G, xoshiro256pp &rng) {
             }
         }
 
-        // PULL
         for (int u : giant) {
             if (!informed.count(u)) {
                 if (!G[u].empty()) {
@@ -161,9 +143,6 @@ int rumor_spread_push_pull(const vector<vector<int>> &G, xoshiro256pp &rng) {
     return rounds;
 }
 
-// ----------------------------
-// Experiment
-// ----------------------------
 vector<int> experiment(int n, double beta, int trials, xoshiro256pp &rng) {
     vector<int> results;
 
@@ -205,10 +184,8 @@ int main() {
         cout << "Average rounds: " << avg << endl;
         cout << "log log n: " << loglogn << endl;
 
-        // ✅ WRITE IMMEDIATELY
         file << n << "," << avg << "," << loglogn << "," << ratio << "\n";
 
-        // Optional but recommended for long runs
         file.flush();
 
         i = int(i * 1.15);
