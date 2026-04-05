@@ -1,9 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/*────────────────────────────────────────────
-  xoshiro256++ RNG
-────────────────────────────────────────────*/
 struct RNG {
 
     uint64_t s[4];
@@ -46,9 +43,6 @@ struct RNG {
 };
 
 
-/*────────────────────────────────────────────
-  Bitset helpers
-────────────────────────────────────────────*/
 inline bool bit_get(const vector<uint64_t> &bits,uint32_t i){
     return bits[i>>6]&(1ULL<<(i&63));
 }
@@ -57,10 +51,6 @@ inline void bit_set(vector<uint64_t> &bits,uint32_t i){
     bits[i>>6]|=(1ULL<<(i&63));
 }
 
-
-/*────────────────────────────────────────────
-  Adaptive repetitions
-────────────────────────────────────────────*/
 int repetitions(uint64_t n){
 
     if(n<=1e3) return 200;
@@ -72,10 +62,6 @@ int repetitions(uint64_t n){
     return 8;
 }
 
-
-/*────────────────────────────────────────────
-  Exact push simulation
-────────────────────────────────────────────*/
 int simulate(uint32_t n,double f,RNG &rng,
              vector<uint64_t> &bits,
              vector<uint32_t> &informed,
@@ -123,10 +109,6 @@ int simulate(uint32_t n,double f,RNG &rng,
     return rounds;
 }
 
-
-/*────────────────────────────────────────────
-  Main experiment
-────────────────────────────────────────────*/
 int main(){
 
     ios::sync_with_stdio(false);
