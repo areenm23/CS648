@@ -65,7 +65,7 @@ int simulateRumorSpread(int population, int k) {
 int main() {
    	int numSimulations = 10000, pop = 500, step = 500, fin = 10000; 
 	int k[5] = {1, 2, 4, 8, 16}; double avg[5]= {0,0,0,0,0};
-	ofstream file("rumor_output.txt");
+	ofstream file("output.txt");
 	file << "N, k=1, k=2, k=4, k=8, k=16\n" << std::flush;
 	for(int population = pop; population <= fin; population+=step)
 	{

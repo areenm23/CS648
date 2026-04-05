@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import re
-filename = "rumor_output.txt"
+filename = "output.txt"
 with open(filename) as f:
     lines = [line.strip() for line in f if line.strip()]
 header = lines[0].split(",")
